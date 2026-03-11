@@ -70,7 +70,7 @@ def get_working_days(month: int, year: int, holiday_file: str) -> pd.DataFrame:
     ]['Date'].dt.date.tolist()
 
     start = datetime(year, month, 1)
-    end = (start.replace(month=month % 12 + 1, day=1) - timedelta(days=1))
+    end = (datetime(year + (month // 12), month % 12 + 1, 1) - timedelta(days=1))
     all_days = [start + timedelta(days=i) for i in range((end - start).days + 1)]
 
     workdays = [d for d in all_days if d.weekday() < 5 and d.date() not in holiday_dates]

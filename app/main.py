@@ -119,12 +119,14 @@ async def predict(
 @app.get("/api/download/{filename}")
 async def download(filename: str):
     """Download a generated prediction file."""
-    file_path = OUTPUT_DIR / filename
+    file_path = (OUTPUT_DIR / filename).resolve()
+    if not file_path.is_relative_to(OUTPUT_DIR.resolve()):
+        raise HTTPException(status_code=403, detail="Access denied.")
     if not file_path.exists():
         raise HTTPException(status_code=404, detail="File not found.")
     return FileResponse(
         path=str(file_path),
-        filename=filename,
+        filename=file_path.name,
         media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     )
 
