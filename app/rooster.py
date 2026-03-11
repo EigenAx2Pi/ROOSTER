@@ -109,14 +109,12 @@ def generate_booking_predictions(
     schedule['Predicted'] = (schedule['Booking_Frequency'] >= threshold).astype(int)
     schedule['Week'] = schedule['Date'].apply(lambda d: (d.day - 1) // 7 + 1)
 
-    def enforce_min_bookings(group: pd.DataFrame) -> pd.DataFrame:
-        if group['Predicted'].sum() >= min_days_per_week:
-            return group
-        top_days = group.sort_values('Booking_Frequency', ascending=False).head(min_days_per_week)
-        group.loc[top_days.index, 'Predicted'] = 1
-        return group
+    for (_aid, _week), idx in schedule.groupby(['Associate ID', 'Week']).groups.items():
+        group = schedule.loc[idx]
+        if group['Predicted'].sum() < min_days_per_week:
+            top_days = group.sort_values('Booking_Frequency', ascending=False).head(min_days_per_week)
+            schedule.loc[top_days.index, 'Predicted'] = 1
 
-    schedule = schedule.groupby(['Associate ID', 'Week'], group_keys=False).apply(enforce_min_bookings)
     return schedule[['Associate ID', 'Associate Name', 'Date', 'Weekday', 'Predicted']].rename(
         columns={'Predicted': 'Booked'}
     )
