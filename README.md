@@ -37,7 +37,34 @@ A modular, rule-based Python solution for generating smart employee rosters from
 
 ---
 
-## 📦 Example Workflow
+## 🌐 Web Application
+
+ROOSTER now includes a **web interface** built with FastAPI and vanilla HTML/CSS/JS.
+
+### Quick Start
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Start the web server
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+```
+
+Then open [http://localhost:8000](http://localhost:8000) in your browser.
+
+### How to Use
+
+1. **Upload** your historical roster Excel file
+2. **Upload** your holiday calendar Excel file
+3. *(Optional)* Upload a blank Excel template for formatted output
+4. **Configure** prediction parameters (month, year, threshold, min days/week)
+5. Click **Generate Predictions**
+6. **Download** the resulting Excel file
+
+---
+
+## 📦 Example Workflow (Python API)
 
 ```python
 # Step 1: Clean historical Excel file
