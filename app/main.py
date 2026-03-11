@@ -74,7 +74,11 @@ async def predict(
     try:
         roster_path = save_upload(roster_file, "roster")
         holiday_path = save_upload(holiday_file, "holiday")
-        template_path = save_upload(template_file, "template") if template_file else None
+        template_path = (
+            save_upload(template_file, "template")
+            if template_file and template_file.filename
+            else None
+        )
 
         # Step 1: Clean historical roster
         df_cleaned = clean_roster_excel(str(roster_path))
