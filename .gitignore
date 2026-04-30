@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+venv/
+.venv/
+
+# Uploads and outputs (runtime files)
+uploads/
+outputs/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+
+# Test / build artefacts
+.pytest_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+*.cover
+.tox/

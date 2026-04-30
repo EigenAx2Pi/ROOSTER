@@ -1,0 +1,326 @@
+/* ===== Reset & Base ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* ===== Layout ===== */
+.container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+/* ===== Header ===== */
+header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.logo-icon {
+    font-size: 2.5rem;
+}
+
+.logo h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #16213e;
+    letter-spacing: 0.04em;
+}
+
+.subtitle {
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+/* ===== Cards ===== */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.card h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #16213e;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e8e8ef;
+}
+
+/* ===== Upload Grid ===== */
+.upload-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.upload-box {
+    position: relative;
+    border: 2px dashed #d1d5db;
+    border-radius: 10px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    transition: border-color 0.2s, background-color 0.2s;
+    cursor: pointer;
+}
+
+.upload-box:hover {
+    border-color: #6366f1;
+    background-color: #f5f3ff;
+}
+
+.upload-box.has-file {
+    border-color: #22c55e;
+    background-color: #f0fdf4;
+}
+
+.upload-box label {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.upload-icon {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+.upload-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #374151;
+}
+
+.upload-hint {
+    font-size: 0.78rem;
+    color: #9ca3af;
+}
+
+.upload-box input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.file-name {
+    font-size: 0.78rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+    word-break: break-all;
+}
+
+.required {
+    color: #ef4444;
+}
+
+.optional {
+    color: #9ca3af;
+    font-weight: 400;
+    font-size: 0.8rem;
+}
+
+/* ===== Parameters Grid ===== */
+.params-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.25rem;
+}
+
+.param-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.param-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #374151;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.param-group input,
+.param-group select {
+    padding: 0.6rem 0.75rem;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: #1a1a2e;
+    background: #ffffff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.param-group input:focus,
+.param-group select:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.tooltip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #6b7280;
+    cursor: help;
+}
+
+/* ===== Button ===== */
+.btn-primary {
+    display: block;
+    width: 100%;
+    padding: 0.9rem;
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.2s;
+    margin-bottom: 1.5rem;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2.5px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+    margin-right: 0.4rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===== Result / Error Cards ===== */
+.result-card,
+.error-card {
+    text-align: center;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.result-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.result-card h2 {
+    border: none;
+    color: #16a34a;
+}
+
+.error-card h2 {
+    border: none;
+    color: #dc2626;
+}
+
+.result-card p,
+.error-card p {
+    color: #6b7280;
+    margin-bottom: 1.25rem;
+}
+
+.btn-download {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: #22c55e;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-download:hover {
+    background: #16a34a;
+}
+
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: #9ca3af;
+    font-size: 0.82rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .logo h1 {
+        font-size: 1.75rem;
+    }
+
+    .upload-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .params-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}

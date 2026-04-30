@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROOSTER - Employee Roster Prediction</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="logo-icon">&#x1F413;</span>
+                <h1>ROOSTER</h1>
+            </div>
+            <p class="subtitle">Rule-Based Employee Roster Prediction System</p>
+        </header>
+
+        <main>
+            <form id="predict-form" enctype="multipart/form-data">
+                <!-- File Upload Section -->
+                <section class="card">
+                    <h2>Upload Files</h2>
+                    <div class="upload-grid">
+                        <div class="upload-box">
+                            <label for="roster-file">
+                                <div class="upload-icon">&#x1F4C2;</div>
+                                <span class="upload-label">Historical Roster <span class="required">*</span></span>
+                                <span class="upload-hint">Excel file with past booking data</span>
+                            </label>
+                            <input type="file" id="roster-file" name="roster_file" accept=".xlsx,.xls" required>
+                            <div class="file-name" id="roster-file-name">No file chosen</div>
+                        </div>
+
+                        <div class="upload-box">
+                            <label for="holiday-file">
+                                <div class="upload-icon">&#x1F4C5;</div>
+                                <span class="upload-label">Holiday Calendar <span class="required">*</span></span>
+                                <span class="upload-hint">Excel file with holiday dates</span>
+                            </label>
+                            <input type="file" id="holiday-file" name="holiday_file" accept=".xlsx,.xls" required>
+                            <div class="file-name" id="holiday-file-name">No file chosen</div>
+                        </div>
+
+                        <div class="upload-box">
+                            <label for="template-file">
+                                <div class="upload-icon">&#x1F4C4;</div>
+                                <span class="upload-label">Blank Template <span class="optional">(optional)</span></span>
+                                <span class="upload-hint">Excel template for output formatting</span>
+                            </label>
+                            <input type="file" id="template-file" name="template_file" accept=".xlsx,.xls">
+                            <div class="file-name" id="template-file-name">No file chosen</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Parameters Section -->
+                <section class="card">
+                    <h2>Prediction Parameters</h2>
+                    <div class="params-grid">
+                        <div class="param-group">
+                            <label for="month">Target Month</label>
+                            <select id="month" name="month" required>
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7" selected>July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
+
+                        <div class="param-group">
+                            <label for="year">Target Year</label>
+                            <input type="number" id="year" name="year" value="2026" min="2000" max="2100" required>
+                        </div>
+
+                        <div class="param-group">
+                            <label for="threshold">
+                                Frequency Threshold
+                                <span class="tooltip" title="Employees are booked on a weekday if their historical frequency exceeds this value">&#x2139;</span>
+                            </label>
+                            <input type="number" id="threshold" name="threshold" value="0.6" min="0.01" max="1" step="0.01" required>
+                        </div>
+
+                        <div class="param-group">
+                            <label for="min-days">
+                                Min Days / Week
+                                <span class="tooltip" title="Minimum number of bookings enforced per employee per week">&#x2139;</span>
+                            </label>
+                            <input type="number" id="min-days" name="min_days_per_week" value="3" min="1" max="5" required>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Submit -->
+                <button type="submit" id="submit-btn" class="btn-primary">
+                    <span class="btn-text">Generate Predictions</span>
+                    <span class="btn-loading" style="display:none;">
+                        <span class="spinner"></span> Processing...
+                    </span>
+                </button>
+            </form>
+
+            <!-- Result Section -->
+            <section id="result" class="card result-card" style="display:none;">
+                <div class="result-icon">&#x2705;</div>
+                <h2>Predictions Ready!</h2>
+                <p id="result-message"></p>
+                <a id="download-link" class="btn-download" href="#">
+                    &#x1F4E5; Download Roster Prediction
+                </a>
+            </section>
+
+            <!-- Error Section -->
+            <section id="error" class="card error-card" style="display:none;">
+                <div class="result-icon">&#x274C;</div>
+                <h2>Something went wrong</h2>
+                <p id="error-message"></p>
+            </section>
+        </main>
+
+        <footer>
+            <p>ROOSTER &mdash; Rule-Based Employee Roster Prediction System</p>
+        </footer>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>

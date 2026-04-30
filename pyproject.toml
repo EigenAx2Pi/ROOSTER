@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rooster"
+version = "0.2.0"
+description = "Employee roster prediction — interpretable rules in production, gradient-boosted ML benchmark for evaluation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "EigenAx" }]
+keywords = ["roster", "scheduling", "machine-learning", "fastapi", "workforce"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Framework :: FastAPI",
+    "Topic :: Office/Business :: Scheduling",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = [
+    "fastapi>=0.110.0",
+    "uvicorn[standard]>=0.27.0",
+    "pandas>=2.0.0",
+    "numpy>=1.26.0",
+    "openpyxl>=3.1.0",
+    "python-multipart>=0.0.9",
+    "scikit-learn>=1.4.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.4", "mypy>=1.10"]
+
+[project.scripts]
+rooster-benchmark = "scripts.benchmark:main"
+
+[tool.setuptools.packages.find]
+include = ["app*", "scripts*"]
+exclude = ["tests*", "static*", "uploads*", "outputs*"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501", "B008", "B905", "SIM108"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "-q"
